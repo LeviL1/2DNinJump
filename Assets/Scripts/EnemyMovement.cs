@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
         {
             enemyTransform.posistion = Vector2.MoveTowards(pathEnd);
         }
-        else(Vector2.Distance(enemyTransform.posistion, pathstart) <= 0.2f)
+        else if(Vector2.Distance(enemyTransform.posistion, pathstart) <= 0.2f)
         {
             enemyTransform.posistion = Vector2.MoveTowards(pathStart);
         }
