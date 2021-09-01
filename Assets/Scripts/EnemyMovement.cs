@@ -4,26 +4,50 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform pathstart;
-    public Transform pathEnd;
-    public float speed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Transfrom enemyTransfrom = GetComponent(Transform);
-    }
+  public Transform[] wayPoints;
+  public Transform pathStart;
+  public Transform pathEnd;
+  private Transform target;
+  public Transform player;
+  private float speed = 2;
+  private int wayPointIndex = 0;
+  private void Awake()
+  {
+    wayPoints = new Transform[2];
+    wayPoints[0] = pathStart;
+    wayPoints[1] = pathEnd;
+  }
+  // Start is called before the first frame update
+  void Start()
+  {
 
-    // Update is called once per frame
-    void FixedUpdate()
+    
+    target = wayPoints[0];
+  }
+
+
+  private void Update()
+  {
+    
+    transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    if (Vector2.Distance(transform.position, target.position) <= 0.2f)
     {
-        enemyTransform.posistion = Vector2.MoveTowards(pathstart.posistion);
-        if(Vector2.Distance(enemyTransform.posistion, pathstart) <= 0.2f)
-        {
-            enemyTransform.posistion = Vector2.MoveTowards(pathEnd);
-        }
-        else if(Vector2.Distance(enemyTransform.posistion, pathstart) <= 0.2f)
-        {
-            enemyTransform.posistion = Vector2.MoveTowards(pathStart);
-        }
+      
+      MoveStart();
+      wayPointIndex++;
     }
+    
+    void MoveStart()
+    {
+
+      if (wayPointIndex == wayPoints.Length - 1) 
+      {
+        wayPointIndex -= 1;
+      }
+      
+      target = wayPoints[wayPointIndex];
+    }
+    
+  }
+
 }
