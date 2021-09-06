@@ -1,23 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Spikes : MonoBehaviour
 {
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+  [SerializeField] private PlayerHealth playerHealth;
+  [SerializeField] private float SpikeDamage = 25;
     // Update is called once per frame
     void Update()
     {
-
+      
     }
-    void OnCollisionEnter(Collision other)
-    {
-       // if(other)
-    }
+  private void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (collision.tag == "Player") { playerHealth.TakeDamage(SpikeDamage); }
+  }
 }
