@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
   [SerializeField] private float playerHealth = 100;
-    // Start is called before the first frame update
-    void Start()
+  [SerializeField] private Animator anim;
+  // Start is called before the first frame update
+  void Start()
     {
         
     }
@@ -14,8 +15,15 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    if (playerHealth == 0) 
+    {
+      Die();
+    }
     }
   public void TakeDamage(float dmg) { playerHealth -= dmg; }
-
+  public void Die() 
+  {
+    anim.Play("Die");
+    Destroy(gameObject, 3f);
+  }
 }
