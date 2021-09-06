@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
   public CharacterController2D controller;
   public float runSpeed = 40;
   float horizontalMove = 0f;
+  public GameObject shuriken;
   public Animator anim;
   bool jump = false;
     // Start is called before the first frame update
@@ -30,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
     if (Input.GetButtonDown("Jump"))
     {
       jump = true;
+    }
+    if (Input.GetKeyDown(KeyCode.F)) 
+    {
+      Instantiate(shuriken, transform.position, transform.rotation);
     }
     }
   private void FixedUpdate()

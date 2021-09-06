@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 7126088305563498400}
   - component: {fileID: 7126088305563498429}
   - component: {fileID: 7126088305563498428}
+  - component: {fileID: 1105934078807928090}
   m_Layer: 0
   m_Name: BasicEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7126088305563498401}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 365e8c897a0aacb4cb958ee0c910278d, type: 3}
   m_Name: 
@@ -175,3 +176,16 @@ MonoBehaviour:
   firePoint: {fileID: 7126088304689397037}
   range: 3
   attackRate: 1
+--- !u!114 &1105934078807928090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126088305563498401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffca8ce4f702c649b9cab3c3bc611ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
