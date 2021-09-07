@@ -7,29 +7,35 @@ public class Shuriken1 : MonoBehaviour
   
   
     public float bulletSpeed = 20f;
-    //public float dmg;
-    private Rigidbody2D rb;
-    private EnemyHealth[] enemyHealth;
-    private float dmg = 50f;
-    //public GameObject boomanim;
-    // Start is called before the first frame update
+    //set private after good value is chosen
+
+    private Rigidbody2D _rb;
+    //the rigidbody attached to the shuriken
+    //private CharacterController2D _cc;
+    //the Character Controller for telling if facing right or left
+    private EnemyHealth[] _enemyHealth;
+    //enemyHealth script needed for damageing Enemies
+    private float _dmg = 50f;
+    //Damage the shuriken does
     void Start()
     {
-      enemyHealth = GameObject.FindObjectsOfType<EnemyHealth>();
-      rb = this.GetComponent<Rigidbody2D>();
-      rb.velocity = transform.right * bulletSpeed;
+        //retrieve references  for _cc _enemyHealth and _rb
+      //_cc = GameObject.FindObjectsOfType<CharacterController2D>();
+      _enemyHealth = GameObject.FindObjectsOfType<EnemyHealth>();
+      _rb = this.GetComponent<Rigidbody2D>();
+
+      _rb.velocity = transform.right * bulletSpeed;
 
     }
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-    //GameObject hitEffect;
-    //EnemyHealth enemy = hitInfo.GetComponent<EnemyHealth>();
-    foreach (EnemyHealth health in enemyHealth) 
+    
+    foreach (EnemyHealth health in _enemyHealth) 
     {
       if (hitInfo.CompareTag("Enemy") && health.gameObject == hitInfo.gameObject) 
 
       {
-        health.TakeDamage(dmg);
+        health.TakeDamage(_dmg);
       }
     }
     //if (hitInfo.tag == "Enemy") { enemyHealth.TakeDamage(dmg); }
