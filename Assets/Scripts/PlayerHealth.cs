@@ -26,4 +26,8 @@ public class PlayerHealth : MonoBehaviour
     anim.Play("Die");
     Destroy(gameObject, 3f);
   }
+  public void Add(float amt) 
+  {
+    playerHealth += amt;
+  }
 }

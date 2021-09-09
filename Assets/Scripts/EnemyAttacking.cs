@@ -29,10 +29,10 @@ public class EnemyAttacking : MonoBehaviour
       attackTime = Time.time + attackRate;
       Shoot();
     }
-    Debug.Log(target.name);
+    //Debug.Log(target.name);
   
 }
-  private void OnTriggerEnter2D(Collider2D collision)
+  private void OnTriggerStay2D(Collider2D collision)
   {
     target = collision.transform; 
   }
