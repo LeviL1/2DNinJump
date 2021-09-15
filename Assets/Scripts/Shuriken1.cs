@@ -14,17 +14,24 @@ public class Shuriken1 : MonoBehaviour
     //private CharacterController2D _cc;
     //the Character Controller for telling if facing right or left
     private EnemyHealth[] _enemyHealth;
+    private CharacterController2D _cc;
     //enemyHealth script needed for damageing Enemies
     private float _dmg = 50f;
     //Damage the shuriken does
     void Start()
     {
-        //retrieve references  for _cc _enemyHealth and _rb
-      //_cc = GameObject.FindObjectsOfType<CharacterController2D>();
+    //retrieve references  for _cc _enemyHealth and _rb
+      _cc = GameObject.FindObjectOfType<CharacterController2D>();
       _enemyHealth = GameObject.FindObjectsOfType<EnemyHealth>();
       _rb = this.GetComponent<Rigidbody2D>();
-
+    if (_cc.m_FacingRight == true)
+    {
       _rb.velocity = transform.right * bulletSpeed;
+    }
+    else if (_cc.m_FacingRight != true) 
+    {
+      _rb.velocity = (transform.right * -1) * bulletSpeed;
+    }
 
     }
     private void OnTriggerEnter2D(Collider2D hitInfo)
@@ -38,15 +45,7 @@ public class Shuriken1 : MonoBehaviour
         health.TakeDamage(_dmg);
       }
     }
-    //if (hitInfo.tag == "Enemy") { enemyHealth.TakeDamage(dmg); }
-
-      //if (hitInfo.tag == "balloon")
-      //{
-      //  hitEffect = Instantiate(boomanim, hitInfo.transform.position, hitInfo.transform.rotation);
-      //  Destroy(hitEffect, 0.25f);
-      //}
-
-
+   
       Destroy(gameObject, 1f);
     }
 
