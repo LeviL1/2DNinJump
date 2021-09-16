@@ -4,34 +4,37 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-  public float playerHealth = 100;
-  [SerializeField] private Animator anim;
-  private AudioSource clip;
+  public float playerHealth = 100; //value for players health
+  private Animator _anim; // the animator for the player
+  private AudioSource _clip; //audio for the player
   // Start is called before the first frame update
   void Start()
     {
-    clip = this.GetComponent<AudioSource>();
+    _clip = this.GetComponent<AudioSource>(); //get the audio source
     }
     
     // Update is called once per frame
     void Update()
     {
-    if (playerHealth == 0) 
+    if (playerHealth == 0)  //if playerhealth == 0 then die
     {
       Die();
     }
     }
+    //subtracts dmg value from playerhealth
   public void TakeDamage(float dmg) 
   {
     
-    playerHealth -= dmg;
+    playerHealth -= dmg; //subtract incoming dmg 
 
   }
+    //kills the player
   public void Die() 
   {
-    anim.Play("Die");
-    Destroy(gameObject, 3f);
+    _anim.Play("Die"); //no anim yet
+    Destroy(gameObject, 3f); //destroy player obj
   }
+    //adds incoming health amount to the player health
   public void Add(float amt) 
   {
     playerHealth += amt;
