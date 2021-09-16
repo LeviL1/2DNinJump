@@ -17,6 +17,7 @@ public class Shuriken1 : MonoBehaviour
     private CharacterController2D _cc;
     //enemyHealth script needed for damageing Enemies
     private float _dmg = 50f;
+  private AudioSource _aud;
     //Damage the shuriken does
     void Start()
     {
@@ -24,6 +25,7 @@ public class Shuriken1 : MonoBehaviour
       _cc = GameObject.FindObjectOfType<CharacterController2D>();
       _enemyHealth = GameObject.FindObjectsOfType<EnemyHealth>();
       _rb = this.GetComponent<Rigidbody2D>();
+      _aud = this.GetComponent<AudioSource>();
     if (_cc.m_FacingRight == true)
     {
       _rb.velocity = transform.right * bulletSpeed;
@@ -42,6 +44,7 @@ public class Shuriken1 : MonoBehaviour
       if (hitInfo.CompareTag("Enemy") && health.gameObject == hitInfo.gameObject) 
 
       {
+        _aud.Play();
         health.TakeDamage(_dmg);
       }
     }

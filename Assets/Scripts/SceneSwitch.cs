@@ -24,4 +24,8 @@ public class SceneSwitch : MonoBehaviour
   {
     SceneManager.LoadScene(1, LoadSceneMode.Single);
   }
+  public void LoadCreditsMenu()
+  {
+    SceneManager.LoadScene(4, LoadSceneMode.Single);
+  }
 }

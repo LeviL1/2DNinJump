@@ -11,6 +11,7 @@ public class Shuriken : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerHealth playerHealth;
     private float dmg = 25f;
+  private AudioSource _aud;
     //public GameObject boomanim;
     // Start is called before the first frame update
     void Start()
@@ -18,13 +19,17 @@ public class Shuriken : MonoBehaviour
       playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
       rb = this.GetComponent<Rigidbody2D>();
       rb.velocity = transform.up * bulletSpeed;
-
+    _aud = this.GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
     //GameObject hitEffect;
     //EnemyHealth enemy = hitInfo.GetComponent<EnemyHealth>();
-    if (hitInfo.tag == "Player") { playerHealth.TakeDamage(dmg); }
+    if (hitInfo.tag == "Player") 
+    {
+      _aud.Play();
+      playerHealth.TakeDamage(dmg);
+    }
 
       //if (hitInfo.tag == "balloon")
       //{
