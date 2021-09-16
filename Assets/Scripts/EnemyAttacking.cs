@@ -1,45 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//EnemyAttacking deals with enemy attack and detecting player
 public class EnemyAttacking : MonoBehaviour
 {
-  private Transform target = null;
-  public GameObject bullet;
-  public Transform firePoint;
-  public float range = 3f;
-  private float attackTime;
-  public float attackRate;
-  
-  // Start is called before the first frame update
-  void Start()
-  {
-   // InvokeRepeating(nameof(updateTarget), 0f, 0.5f);
-  }
+  private Transform _target = null; //the current target
 
-  // Update is called once per frame
+  public GameObject bullet; //what the enemy throws
+  public Transform firePoint; //where it throws from
+  
+  private float _attackTime; //time between attacks 
+  public float attackRate; //how quickly the attack
+  
+  
+
+  
   void FixedUpdate()
   {
-    if (target == null)
+    if (_target == null)
     {
-      return;
+      return; //if target doesn't exist do nothing
     }
-    if (Time.time > attackTime)
+    if (Time.time > _attackTime)
     {
-      attackTime = Time.time + attackRate;
-      Shoot();
+      _attackTime = Time.time + attackRate; //if attacktime is less than time.time then shoot
+      Shoot(); //call shoot method
     }
-    //Debug.Log(target.name);
+   
   
 }
+    //When the player is in the trigger set them as the target
   private void OnTriggerStay2D(Collider2D collision)
   {
-    target = collision.transform; 
+    _target = collision.transform; 
   }
+    //if player exist trigger target == null
   private void OnTriggerExit2D(Collider2D collision)
   {
-    target = null;
+    _target = null;
   }
+    //Instantiates a bullet at the firepoint
   void Shoot()
   {
     Instantiate(bullet, firePoint.position, firePoint.rotation);
