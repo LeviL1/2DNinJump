@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-  public Transform player;
-  public float dampTime = 0.4f;
-  private Vector3 cameraPos;
-  private Vector3 velocity = Vector3.zero;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  public Transform player; //player transform
+  public float dampTime = 0.4f; //how closely the camera follows the player
 
+  private Vector3 _cameraPos; //camera pos as a vector3
+  private Vector3 _velocity = Vector3.zero; //velocity = vector.zero
+    
     // Update is called once per frame
     void Update()
     {
-    cameraPos = new Vector3(player.position.x, player.position.y, -10f);
-    transform.position = Vector3.SmoothDamp(gameObject.transform.position, cameraPos, ref velocity, dampTime);
+    _cameraPos = new Vector3(player.position.x, player.position.y, -10f); //find where camera needs to be
+    transform.position = Vector3.SmoothDamp(gameObject.transform.position, _cameraPos, ref _velocity, dampTime); //move camera to _cameraPos
     }
 }
