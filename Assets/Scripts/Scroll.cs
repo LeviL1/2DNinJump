@@ -5,19 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class Scroll : MonoBehaviour
 {
-  public Animator anim;
-  private AudioSource _aud;
+  public Animator anim; //anim attach to finished txt box
+  private AudioSource _aud; //audiosource attached to the scroll
     // Start is called before the first frame update
     void Start()
     {
-    _aud = this.GetComponent<AudioSource>();
+    _aud = this.GetComponent<AudioSource>(); //get the audio source
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   //Upon entering trigger of tag is player than do FinishedLevel() couroutine 
   private void OnTriggerEnter2D(Collider2D other)
   {
     
@@ -31,10 +27,10 @@ public class Scroll : MonoBehaviour
 
   IEnumerator FinishLevel()
   {
-    _aud.Play();
-    anim.Play("TextShow");
-    yield return new WaitForSeconds(3);
-    SceneManager.LoadScene(5, LoadSceneMode.Single);
+    _aud.Play(); //plays scroll audioclip
+    anim.Play("TextShow"); //plays finished animation
+        yield return new WaitForSeconds(3); //waits for finished anim to complete
+    SceneManager.LoadScene(5, LoadSceneMode.Single); //load the finished scene
   }
 
 }
