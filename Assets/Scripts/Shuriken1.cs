@@ -21,24 +21,26 @@ public class Shuriken1 : MonoBehaviour
     //Damage the shuriken does
     void Start()
     {
-    //retrieve references  for _cc _enemyHealth and _rb
+    //retrieve references  for _cc _enemyHealth and _rb and _aud
       _cc = GameObject.FindObjectOfType<CharacterController2D>();
       _enemyHealth = GameObject.FindObjectsOfType<EnemyHealth>();
       _rb = this.GetComponent<Rigidbody2D>();
       _aud = this.GetComponent<AudioSource>();
-    if (_cc.m_FacingRight == true)
+
+    if (_cc.m_FacingRight == true) //if player facing right shoot right
     {
       _rb.velocity = transform.right * bulletSpeed;
     }
-    else if (_cc.m_FacingRight != true) 
+    else if (_cc.m_FacingRight != true) //if player facing left shoot left
     {
       _rb.velocity = (transform.right * -1) * bulletSpeed;
     }
 
     }
+    
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-    
+    //Only hit the damage the enemy that was hit
     foreach (EnemyHealth health in _enemyHealth) 
     {
       if (hitInfo.CompareTag("Enemy") && health.gameObject == hitInfo.gameObject) 
@@ -49,7 +51,7 @@ public class Shuriken1 : MonoBehaviour
       }
     }
    
-      Destroy(gameObject, 1f);
+      Destroy(gameObject, 1f); //destroy the projectile
     }
 
 

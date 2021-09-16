@@ -6,39 +6,31 @@ public class Shuriken : MonoBehaviour
 {
   
   
-    public float bulletSpeed = 20f;
+    public float bulletSpeed = 20f; //projectile speed
     //public float dmg;
-    private Rigidbody2D rb;
-    private PlayerHealth playerHealth;
-    private float dmg = 25f;
-  private AudioSource _aud;
-    //public GameObject boomanim;
+    private Rigidbody2D _rb; //projectile rigidbody
+    private PlayerHealth _playerHealth; //playerhealth component
+    private float _dmg = 25f; //dmg done
+    private AudioSource _aud; //impact sound
+    
     // Start is called before the first frame update
     void Start()
     {
-      playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
-      rb = this.GetComponent<Rigidbody2D>();
-      rb.velocity = transform.up * bulletSpeed;
-    _aud = this.GetComponent<AudioSource>();
+      _playerHealth = GameObject.FindObjectOfType<PlayerHealth>(); //get player health
+      _rb = this.GetComponent<Rigidbody2D>(); //get rigidbody
+      _rb.velocity = transform.up * bulletSpeed; //move rigid body upwards
+        _aud = this.GetComponent<AudioSource>(); //get the audio source
     }
+    //On trigger enter
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-    //GameObject hitEffect;
-    //EnemyHealth enemy = hitInfo.GetComponent<EnemyHealth>();
+    //if hitinfo is a play then play the impact sound and take damage
     if (hitInfo.tag == "Player") 
     {
       _aud.Play();
-      playerHealth.TakeDamage(dmg);
+      _playerHealth.TakeDamage(_dmg);
     }
-
-      //if (hitInfo.tag == "balloon")
-      //{
-      //  hitEffect = Instantiate(boomanim, hitInfo.transform.position, hitInfo.transform.rotation);
-      //  Destroy(hitEffect, 0.25f);
-      //}
-
-
-      Destroy(gameObject, 1f);
+      Destroy(gameObject, 1f); //destroy gameobj
     }
 
 
