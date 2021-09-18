@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
   public GameObject shuriken; //obj the player throws
   public Animator anim; //player animator component
   bool jump = false; //jump = false by default
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
   {
     //Move Character
     controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+    
     jump = false;
   }
 }

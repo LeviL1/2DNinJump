@@ -19,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
 	public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	private AudioSource _clip;
+	private SpriteRenderer _sprite;
 	[Header("Events")]
 	[Space]
 
@@ -32,6 +33,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private void Awake()
 	{
+		_sprite = this.GetComponent<SpriteRenderer>();
 		 _clip = this.GetComponent<AudioSource>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -116,12 +118,14 @@ public class CharacterController2D : MonoBehaviour
 			if (move > 0 && !m_FacingRight)
 			{
 				// ... flip the player.
+				_sprite.flipX = false;
 				Flip();
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
 			else if (move < 0 && m_FacingRight)
 			{
 				// ... flip the player.
+				_sprite.flipX = true;
 				Flip();
 			}
 		}
