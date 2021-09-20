@@ -7,7 +7,7 @@ public class SceneSwitch : MonoBehaviour
 {
   public static void LoadLevelSelect() 
   {
-    SceneManager.LoadScene(0, LoadSceneMode.Single);
+    SceneManager.LoadScene(1, LoadSceneMode.Single);
   }
   public void LoadLevelOne() 
   {
@@ -23,7 +23,7 @@ public class SceneSwitch : MonoBehaviour
   }
   public void LoadMainMenu() 
   {
-    SceneManager.LoadScene(1, LoadSceneMode.Single);
+    SceneManager.LoadScene(0, LoadSceneMode.Single);
   }
   public void LoadCreditsMenu()
   {
